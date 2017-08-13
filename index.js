@@ -1,8 +1,8 @@
-import drums from './drums'
-import baseline from './baseline'
+import drums from './src/drums'
+import baseline from './src/baseline'
 
-import { Song, Sequence } from '../../helpers/song'
-import { kick, snare, base, hihat } from '../../instruments'
+import { Song, Sequence } from './rehman/helpers/song'
+import { kick, snare, base, hihat } from './rehman/instruments'
 
 Song({
   name: 'Seven Nation Army',

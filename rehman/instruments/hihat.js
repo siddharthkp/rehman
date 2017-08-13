@@ -13,7 +13,7 @@ const compress = new Tone.Compressor({
 }).toMaster()
 
 const hihat = new Tone.Sampler({
-  url: './audio/hihat.wav'
+  url: './rehman/audio/hihat.wav'
 }).chain(distortion, compress)
 
 export default hihat

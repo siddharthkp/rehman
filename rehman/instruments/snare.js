@@ -12,8 +12,8 @@ const compress = new Tone.Compressor({
   release: 0.1
 }).toMaster()
 
-const kick = new Tone.Sampler({
-  url: './audio/kick.wav'
+const snare = new Tone.Sampler({
+  url: './rehman/audio/snare.wav'
 }).chain(distortion, compress)
 
-export default kick
+export default snare
