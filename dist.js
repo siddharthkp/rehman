@@ -69,20 +69,20 @@
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7), __webpack_require__(8), __webpack_require__(9), __webpack_require__(5), __webpack_require__(6), __webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7), __webpack_require__(8), __webpack_require__(11), __webpack_require__(12), __webpack_require__(14), __webpack_require__(5), __webpack_require__(6), __webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(require('tone'), require('./songs/seven-nation-army/meta'), require('./songs/seven-nation-army/drums'), require('./songs/seven-nation-army/base'), require('./instruments/kick'), require('./instruments/snare'), require('./instruments/base'));
+    factory(require('tone'), require('./songs/seven-nation-army/meta'), require('./songs/seven-nation-army/drums'), require('./songs/seven-nation-army/baseline'), require('./helpers/sequence'), require('./helpers/riff'), require('./instruments/kick'), require('./instruments/snare'), require('./instruments/base'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.tone, global.meta, global.drums, global.base, global.kick, global.snare, global.base);
+    factory(global.tone, global.meta, global.drums, global.baseline, global.sequence, global.riff, global.kick, global.snare, global.base);
     global.index = mod.exports;
   }
-})(this, function (_tone, _meta, _drums, _base, _kick, _snare, _base3) {
+})(this, function (_tone, _meta, _drums, _baseline, _sequence, _riff, _kick, _snare, _base) {
   'use strict';
 
   var _tone2 = _interopRequireDefault(_tone);
@@ -91,13 +91,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   var _drums2 = _interopRequireDefault(_drums);
 
-  var _base2 = _interopRequireDefault(_base);
+  var _baseline2 = _interopRequireDefault(_baseline);
+
+  var _sequence2 = _interopRequireDefault(_sequence);
+
+  var _riff2 = _interopRequireDefault(_riff);
 
   var _kick2 = _interopRequireDefault(_kick);
 
   var _snare2 = _interopRequireDefault(_snare);
 
-  var _base4 = _interopRequireDefault(_base3);
+  var _base2 = _interopRequireDefault(_base);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -105,24 +109,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var synth = new _tone2.default.Synth().toMaster();
-
   _tone2.default.Transport.bpm.value = _meta2.default.bpm;
 
-  var kickPart = new _tone2.default.Sequence(function (time, note) {
-    _kick2.default.triggerAttackRelease(2, note.duration, time, note.velocity);
-  }, _drums2.default.notes).start();
-
-  var snarePart = new _tone2.default.Sequence(function (time, note) {
-    _snare2.default.triggerAttackRelease(0, note.duration, time, note.velocity);
-  }, _drums2.default.notes).start();
-
-  var basePart = new _tone2.default.Part(function (time, note) {
-    synth.triggerAttackRelease(note.name, note.duration, time, note.velocity);
-  }, _base2.default.notes).start();
+  (0, _sequence2.default)(_kick2.default, _drums2.default.notes);
+  (0, _sequence2.default)(_snare2.default, _drums2.default.notes);
+  (0, _riff2.default)(_base2.default, _baseline2.default.notes);
 
   _tone2.default.Transport.start();
-
   setInterval(function () {
     return _tone2.default.Transport.position = 0;
   }, 4000);
@@ -22747,94 +22740,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     value: true
   });
   exports.default = {
-    notes: [{
-      name: 'G#2',
-      midi: 44,
-      time: 0,
-      velocity: 0.75,
-      duration: 0.5
-    }, {
-      name: 'F2',
-      midi: 41,
-      time: 0,
-      velocity: 0.75,
-      duration: 0.5
-    }, {
-      name: 'C2',
-      midi: 36,
-      time: 0,
-      velocity: 0.75,
-      duration: 0.5
-    }]
+    notes: [{ name: 'G#2', velocity: 0.75, duration: 0.5 }, { name: 'F2', velocity: 0.75, duration: 0.5 }, { name: 'C2', velocity: 0.75, duration: 0.5 }]
   };
 });
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.base = mod.exports;
-  }
-})(this, function (exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = {
-    notes: [{
-      name: 'E2',
-      time: 0,
-      velocity: 0.75,
-      duration: 0.75
-    }, {
-      name: 'E2',
-      time: 0.75,
-      velocity: 0.75,
-      duration: 0.125
-    }, {
-      name: 'G2',
-      time: 1,
-      velocity: 0.75,
-      duration: 0.125
-    }, {
-      name: 'E2',
-      time: 1.375,
-      velocity: 0.75,
-      duration: 0.125
-    }, {
-      name: 'D2',
-      time: 1.75,
-      velocity: 0.75,
-      duration: 0.25
-    }, {
-      name: 'C2',
-      time: 2,
-      velocity: 0.75,
-      duration: 1
-    }, {
-      name: 'B1',
-      time: 3,
-      velocity: 0.75,
-      duration: 1
-    }]
-  };
-});
-
-/***/ }),
+/* 9 */,
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22880,9 +22791,126 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     release: 0.1
   }).toMaster();
 
-  var synth = new _tone2.default.Synth().chain(distortion, compress);
+  var synth = new _tone2.default.Synth().chain(compress, distortion);
 
   exports.default = synth;
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.baseline = mod.exports;
+  }
+})(this, function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = {
+    notes: [{ name: 'E2', time: 0, velocity: 0.75, duration: 0.75 }, { name: 'E2', time: 0.75, velocity: 0.75, duration: 0.125 }, { name: 'G2', time: 1, velocity: 0.75, duration: 0.125 }, { name: 'E2', time: 1.375, velocity: 0.75, duration: 0.125 }, { name: 'D2', time: 1.75, velocity: 0.75, duration: 0.25 }, { name: 'C2', time: 2, velocity: 0.75, duration: 1 }, { name: 'B1', time: 3, velocity: 0.75, duration: 1 }]
+  };
+});
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('tone'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.tone);
+    global.sequence = mod.exports;
+  }
+})(this, function (exports, _tone) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _tone2 = _interopRequireDefault(_tone);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var sequence = function sequence(instrument, notes) {
+    new _tone2.default.Sequence(function (time, note) {
+      instrument.triggerAttackRelease(2, note.duration, time, note.velocity);
+    }, notes).start();
+  };
+
+  exports.default = sequence;
+});
+
+/***/ }),
+/* 13 */,
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('tone'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.tone);
+    global.riff = mod.exports;
+  }
+})(this, function (exports, _tone) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _tone2 = _interopRequireDefault(_tone);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var part = function part(instrument, notes) {
+    new _tone2.default.Part(function (time, note) {
+      instrument.triggerAttackRelease(note.name, note.duration, time, note.velocity);
+    }, notes).start();
+  };
+
+  exports.default = part;
 });
 
 /***/ })
