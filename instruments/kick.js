@@ -1,5 +1,10 @@
 import Tone from 'tone'
 
+const distortion = new Tone.Distortion({
+  distortion: 0.4,
+  wet: 0.4
+})
+
 const compress = new Tone.Compressor({
   threshold: -30,
   ratio: 6,
@@ -18,6 +23,6 @@ const kick = new Tone.MembraneSynth({
     decay: 0.2,
     sustain: 0
   }
-}).chain(compress)
+}).chain(distortion, compress)
 
 export default kick
