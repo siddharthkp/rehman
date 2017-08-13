@@ -11,6 +11,8 @@
   "author": "siddharthkp",
   "license": "MIT",
   "dependencies": {
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
     "serve": "5.2.1",
     "tone": "0.10.0"
   },

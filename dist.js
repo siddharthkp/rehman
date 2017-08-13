@@ -22545,14 +22545,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     repeat: 4000
   });
 
-  (0, _song.Riff)(_instruments.kick, _drums2.default.notes);
-  (0, _song.Riff)(_instruments.snare, _drums2.default.notes.filter(function (note, index) {
+  (0, _song.Sequence)(_instruments.kick, _drums2.default.notes);
+  (0, _song.Sequence)(_instruments.snare, _drums2.default.notes.filter(function (note, index) {
     return index % 2;
   }));
-  (0, _song.Riff)(_instruments.hihat, _drums2.default.notes.filter(function (note, index) {
+  (0, _song.Sequence)(_instruments.hihat, _drums2.default.notes.filter(function (note, index) {
     return index % 2 === 0;
   }));
-  (0, _song.Riff)(_instruments.base, _baseline2.default.notes);
+  (0, _song.Sequence)(_instruments.base, _baseline2.default.notes);
 });
 
 /***/ }),
@@ -22621,32 +22621,30 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(5), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(5)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('tone'), require('./sequence'), require('./riff'));
+    factory(exports, require('tone'), require('./sequence'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.tone, global.sequence, global.riff);
+    factory(mod.exports, global.tone, global.sequence);
     global.song = mod.exports;
   }
-})(this, function (exports, _tone, _sequence, _riff) {
+})(this, function (exports, _tone, _sequence) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.Riff = exports.Sequence = exports.Song = undefined;
+  exports.Sequence = exports.Song = undefined;
 
   var _tone2 = _interopRequireDefault(_tone);
 
   var _sequence2 = _interopRequireDefault(_sequence);
-
-  var _riff2 = _interopRequireDefault(_riff);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -22662,12 +22660,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }, meta.repeat);
   };
 
-  var Sequence = _sequence2.default.add;
-  var Riff = _riff2.default.add;
+  var Sequence = _sequence2.default;
 
   exports.Song = Song;
   exports.Sequence = Sequence;
-  exports.Riff = Riff;
 });
 
 /***/ }),
@@ -22704,63 +22700,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var add = function add(instrument, notes) {
-    new _tone2.default.Sequence(function (time, note) {
-      instrument.triggerAttackRelease(2, note.duration, time, note.velocity);
-    }, notes).start();
-  };
-
-  var sequence = { add: add };
-
-  exports.default = sequence;
-});
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports, require('tone'));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, global.tone);
-    global.riff = mod.exports;
-  }
-})(this, function (exports, _tone) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _tone2 = _interopRequireDefault(_tone);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  var add = function add(instrument, notes) {
+  var sequence = function sequence(instrument, notes) {
     new _tone2.default.Part(function (time, note) {
       instrument.triggerAttackRelease(note.name, note.duration, time, note.velocity);
     }, notes).start();
   };
 
-  var riff = { add: add };
-
-  exports.default = riff;
+  exports.default = sequence;
 });
 
 /***/ }),
+/* 6 */,
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 

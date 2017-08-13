@@ -1,7 +1,7 @@
 import drums from './drums'
 import baseline from './baseline'
 
-import { Song, Sequence, Riff } from '../../helpers/song'
+import { Song, Sequence } from '../../helpers/song'
 import { kick, snare, base, hihat } from '../../instruments'
 
 Song({
@@ -10,7 +10,7 @@ Song({
   repeat: 4000
 })
 
-Riff(kick, drums.notes)
-Riff(snare, drums.notes.filter((note, index) => index % 2))
-Riff(hihat, drums.notes.filter((note, index) => index % 2 === 0))
-Riff(base, baseline.notes)
+Sequence(kick, drums.notes)
+Sequence(snare, drums.notes.filter((note, index) => index % 2))
+Sequence(hihat, drums.notes.filter((note, index) => index % 2 === 0))
+Sequence(base, baseline.notes)
