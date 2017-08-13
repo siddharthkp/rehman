@@ -1,6 +1,6 @@
 import Tone from 'tone'
 
-const part = (instrument, notes) => {
+const add = (instrument, notes) => {
   new Tone.Part((time, note) => {
     instrument.triggerAttackRelease(
       note.name,
@@ -11,4 +11,6 @@ const part = (instrument, notes) => {
   }, notes).start()
 }
 
-export default part
+const riff = { add }
+
+export default riff

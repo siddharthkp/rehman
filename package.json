@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "start": "serve"
   },
   "keywords": [],
   "author": "siddharthkp",
   "license": "MIT",
   "dependencies": {
-    "react-music": "1.0.2",
+    "serve": "5.2.1",
     "tone": "0.10.0"
   },
   "devDependencies": {

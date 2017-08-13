@@ -1,21 +1,12 @@
-import Tone from 'tone'
-
 import meta from './songs/seven-nation-army/meta'
 import drums from './songs/seven-nation-army/drums'
 import baseline from './songs/seven-nation-army/baseline'
 
-import sequence from './helpers/sequence'
-import riff from './helpers/riff'
+import { song, sequence, riff } from './helpers'
+import { kick, snare, base } from './instruments'
 
-import kick from './instruments/kick'
-import snare from './instruments/snare'
-import base from './instruments/base'
+sequence.add(kick, drums.notes)
+sequence.add(snare, drums.notes)
+riff.add(base, baseline.notes)
 
-Tone.Transport.bpm.value = meta.bpm
-
-sequence(kick, drums.notes)
-sequence(snare, drums.notes)
-riff(base, baseline.notes)
-
-Tone.Transport.start()
-setInterval(() => (Tone.Transport.position = 0), 4000)
+song(meta, 4000)
