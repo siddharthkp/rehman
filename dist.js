@@ -22533,23 +22533,21 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   var _baseline2 = _interopRequireDefault(_baseline);
 
-  var _song2 = _interopRequireDefault(_song);
-
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       default: obj
     };
   }
 
-  _song2.default.create({
+  (0, _song.Song)({
     name: 'Seven Nation Army',
     bpm: 120,
     repeat: 4000
   });
 
-  _song2.default.addSequence(_instruments.kick, _drums2.default.notes);
-  _song2.default.addSequence(_instruments.snare, _drums2.default.notes);
-  _song2.default.addRiff(_instruments.base, _baseline2.default.notes);
+  (0, _song.Sequence)(_instruments.kick, _drums2.default.notes);
+  (0, _song.Sequence)(_instruments.snare, _drums2.default.notes);
+  (0, _song.Riff)(_instruments.base, _baseline2.default.notes);
 });
 
 /***/ }),
@@ -22637,6 +22635,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.Riff = exports.Sequence = exports.Song = undefined;
 
   var _tone2 = _interopRequireDefault(_tone);
 
@@ -22652,7 +22651,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   var song = {};
 
-  song.create = function (meta) {
+  var Song = function Song(meta) {
     _tone2.default.Transport.bpm.value = meta.bpm;
     _tone2.default.Transport.start();
     setInterval(function () {
@@ -22660,10 +22659,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }, meta.repeat);
   };
 
-  song.addSequence = _sequence2.default.add;
-  song.addRiff = _riff2.default.add;
+  var Sequence = _sequence2.default.add;
+  var Riff = _riff2.default.add;
 
-  exports.default = song;
+  exports.Song = Song;
+  exports.Sequence = Sequence;
+  exports.Riff = Riff;
 });
 
 /***/ }),
