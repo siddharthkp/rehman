@@ -22513,20 +22513,20 @@ var __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory){
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2), __webpack_require__(3), __webpack_require__(4), __webpack_require__(5), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2), __webpack_require__(3), __webpack_require__(4), __webpack_require__(8), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(require('./songs/seven-nation-army/meta'), require('./songs/seven-nation-army/drums'), require('./songs/seven-nation-army/baseline'), require('./helpers'), require('./instruments'));
+    factory(require('./songs/seven-nation-army/meta'), require('./songs/seven-nation-army/drums'), require('./songs/seven-nation-army/baseline'), require('./helpers/song'), require('./instruments'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.meta, global.drums, global.baseline, global.helpers, global.instruments);
+    factory(global.meta, global.drums, global.baseline, global.song, global.instruments);
     global.index = mod.exports;
   }
-})(this, function (_meta, _drums, _baseline, _helpers, _instruments) {
+})(this, function (_meta, _drums, _baseline, _song, _instruments) {
   'use strict';
 
   var _meta2 = _interopRequireDefault(_meta);
@@ -22535,17 +22535,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   var _baseline2 = _interopRequireDefault(_baseline);
 
+  var _song2 = _interopRequireDefault(_song);
+
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       default: obj
     };
   }
 
-  _helpers.sequence.add(_instruments.kick, _drums2.default.notes);
-  _helpers.sequence.add(_instruments.snare, _drums2.default.notes);
-  _helpers.riff.add(_instruments.base, _baseline2.default.notes);
+  _song.sequence.add(_instruments.kick, _drums2.default.notes);
+  _song.sequence.add(_instruments.snare, _drums2.default.notes);
+  _song.riff.add(_instruments.base, _baseline2.default.notes);
 
-  (0, _helpers.song)(_meta2.default, 4000);
+  (0, _song2.default)(_meta2.default, 4000);
 });
 
 /***/ }),
@@ -22640,50 +22642,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(6), __webpack_require__(7), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports, require('./riff'), require('./sequence'), require('./song'));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, global.riff, global.sequence, global.song);
-    global.index = mod.exports;
-  }
-})(this, function (exports, _riff, _sequence, _song) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.song = exports.sequence = exports.riff = undefined;
-
-  var _riff2 = _interopRequireDefault(_riff);
-
-  var _sequence2 = _interopRequireDefault(_sequence);
-
-  var _song2 = _interopRequireDefault(_song);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  exports.riff = _riff2.default;
-  exports.sequence = _sequence2.default;
-  exports.song = _song2.default;
-});
-
-/***/ }),
+/* 5 */,
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22779,27 +22738,32 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(7), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('tone'));
+    factory(exports, require('tone'), require('./sequence'), require('./riff'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.tone);
+    factory(mod.exports, global.tone, global.sequence, global.riff);
     global.song = mod.exports;
   }
-})(this, function (exports, _tone) {
+})(this, function (exports, _tone, _sequence, _riff) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.riff = exports.sequence = undefined;
 
   var _tone2 = _interopRequireDefault(_tone);
+
+  var _sequence2 = _interopRequireDefault(_sequence);
+
+  var _riff2 = _interopRequireDefault(_riff);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -22816,6 +22780,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   };
 
   exports.default = song;
+  exports.sequence = _sequence2.default;
+  exports.riff = _riff2.default;
 });
 
 /***/ }),

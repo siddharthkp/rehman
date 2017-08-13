@@ -1,5 +1,8 @@
 import Tone from 'tone'
 
+import sequence from './sequence'
+import riff from './riff'
+
 const song = (meta, repeat) => {
   Tone.Transport.bpm.value = meta.bpm
   Tone.Transport.start()
@@ -7,3 +10,5 @@ const song = (meta, repeat) => {
 }
 
 export default song
+
+export { sequence, riff }
