@@ -1,12 +1,15 @@
-import meta from './songs/seven-nation-army/meta'
 import drums from './songs/seven-nation-army/drums'
 import baseline from './songs/seven-nation-army/baseline'
 
-import song, { sequence, riff } from './helpers/song'
+import song from './helpers/song'
 import { kick, snare, base } from './instruments'
 
-sequence.add(kick, drums.notes)
-sequence.add(snare, drums.notes)
-riff.add(base, baseline.notes)
+song.addSequence(kick, drums.notes)
+song.addSequence(snare, drums.notes)
+song.addRiff(base, baseline.notes)
 
-song(meta, 4000)
+song.create({
+  name: 'Seven Nation Army',
+  bpm: 120,
+  repeat: 4000
+})

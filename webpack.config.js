@@ -8,7 +8,7 @@ const babelOptions = {
 }
 
 const config = {
-  entry: './index.js',
+  entry: './songs/seven-nation-army/index.js',
   output: { filename: 'dist.js', path: resolve('./') },
 
   module: {
