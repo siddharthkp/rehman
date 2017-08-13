@@ -12,17 +12,8 @@ const compress = new Tone.Compressor({
   release: 0.1
 }).toMaster()
 
-const kick = new Tone.MembraneSynth({
-  pitchDecay: 0.01,
-  octaves: 6,
-  oscillator: {
-    type: 'square4'
-  },
-  envelope: {
-    attack: 0.001,
-    decay: 0.2,
-    sustain: 0
-  }
+const kick = new Tone.Sampler({
+  url: './audio/kick.wav'
 }).chain(distortion, compress)
 
 export default kick

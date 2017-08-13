@@ -3,13 +3,15 @@ import Tone from 'tone'
 import sequence from './sequence'
 import riff from './riff'
 
-const Song = meta => {
+const song = {}
+
+song.create = meta => {
   Tone.Transport.bpm.value = meta.bpm
   Tone.Transport.start()
   setInterval(() => (Tone.Transport.position = 0), meta.repeat)
 }
 
-const Sequence = sequence.add
-const Riff = riff.add
+song.addSequence = sequence.add
+song.addRiff = riff.add
 
-export { Song, Sequence, Riff }
+export default song

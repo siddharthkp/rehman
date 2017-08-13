@@ -12,6 +12,7 @@ const compress = new Tone.Compressor({
   release: 0.1
 }).toMaster()
 
-const synth = new Tone.Synth().chain(compress, distortion)
+const synth = new Tone.Synth().toMaster()
+synth.volume.value = 15
 
 export default synth

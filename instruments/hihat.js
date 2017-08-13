@@ -12,8 +12,8 @@ const compress = new Tone.Compressor({
   release: 0.1
 }).toMaster()
 
-const snare = new Tone.Sampler({
-  url: './audio/snare.wav'
+const hihat = new Tone.Sampler({
+  url: './audio/hihat.wav'
 }).chain(distortion, compress)
 
-export default snare
+export default hihat

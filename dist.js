@@ -22545,8 +22545,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     repeat: 4000
   });
 
-  (0, _song.Sequence)(_instruments.kick, _drums2.default.notes);
-  (0, _song.Sequence)(_instruments.snare, _drums2.default.notes);
+  (0, _song.Riff)(_instruments.kick, _drums2.default.notes);
+  (0, _song.Riff)(_instruments.snare, _drums2.default.notes.filter(function (note, index) {
+    return index % 2;
+  }));
+  (0, _song.Riff)(_instruments.hihat, _drums2.default.notes.filter(function (note, index) {
+    return index % 2 === 0;
+  }));
   (0, _song.Riff)(_instruments.base, _baseline2.default.notes);
 });
 
@@ -22570,13 +22575,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     global.drums = mod.exports;
   }
 })(this, function (exports) {
-  'use strict';
+  "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.default = {
-    notes: [{ name: 'G#2', velocity: 0.75, duration: 0.5 }, { name: 'F2', velocity: 0.75, duration: 0.5 }, { name: 'C2', velocity: 0.75, duration: 0.5 }]
+    notes: [{ name: 2, time: 0, velocity: 0.75, duration: 0.75 }, { name: 2, time: 0.5, velocity: 0.75, duration: 0.75 }, { name: 2, time: 1, velocity: 0.75, duration: 0.75 }, { name: 2, time: 1.5, velocity: 0.75, duration: 0.75 }, { name: 2, time: 2, velocity: 0.75, duration: 0.75 }, { name: 2, time: 2.5, velocity: 0.75, duration: 0.75 }, { name: 2, time: 3, velocity: 0.75, duration: 0.75 }, { name: 2, time: 3.5, velocity: 0.75, duration: 0.75 }]
   };
 });
 
@@ -22648,8 +22653,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       default: obj
     };
   }
-
-  var song = {};
 
   var Song = function Song(meta) {
     _tone2.default.Transport.bpm.value = meta.bpm;
@@ -22763,30 +22766,32 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(8), __webpack_require__(9), __webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(8), __webpack_require__(9), __webpack_require__(11), __webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('./kick'), require('./snare'), require('./base'));
+    factory(exports, require('./kick'), require('./snare'), require('./hihat'), require('./base'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.kick, global.snare, global.base);
+    factory(mod.exports, global.kick, global.snare, global.hihat, global.base);
     global.index = mod.exports;
   }
-})(this, function (exports, _kick, _snare, _base) {
+})(this, function (exports, _kick, _snare, _hihat, _base) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.base = exports.snare = exports.kick = undefined;
+  exports.hihat = exports.base = exports.snare = exports.kick = undefined;
 
   var _kick2 = _interopRequireDefault(_kick);
 
   var _snare2 = _interopRequireDefault(_snare);
+
+  var _hihat2 = _interopRequireDefault(_hihat);
 
   var _base2 = _interopRequireDefault(_base);
 
@@ -22799,6 +22804,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   exports.kick = _kick2.default;
   exports.snare = _snare2.default;
   exports.base = _base2.default;
+  exports.hihat = _hihat2.default;
 });
 
 /***/ }),
@@ -22847,17 +22853,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     release: 0.1
   }).toMaster();
 
-  var kick = new _tone2.default.MembraneSynth({
-    pitchDecay: 0.01,
-    octaves: 6,
-    oscillator: {
-      type: 'square4'
-    },
-    envelope: {
-      attack: 0.001,
-      decay: 0.2,
-      sustain: 0
-    }
+  var kick = new _tone2.default.Sampler({
+    url: './audio/kick.wav'
   }).chain(distortion, compress);
 
   exports.default = kick;
@@ -22910,12 +22907,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   }).toMaster();
 
   var snare = new _tone2.default.Sampler({
-    url: './audio/snare.mp3',
-    envelope: {
-      attack: 0.01,
-      decay: 0.05,
-      sustain: 0
-    }
+    url: './audio/snare.wav'
   }).chain(distortion, compress);
 
   exports.default = snare;
@@ -22967,9 +22959,63 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     release: 0.1
   }).toMaster();
 
-  var synth = new _tone2.default.Synth().chain(compress, distortion);
+  var synth = new _tone2.default.Synth().toMaster();
+  synth.volume.value = 15;
 
   exports.default = synth;
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('tone'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.tone);
+    global.hihat = mod.exports;
+  }
+})(this, function (exports, _tone) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _tone2 = _interopRequireDefault(_tone);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var distortion = new _tone2.default.Distortion({
+    distortion: 0.4,
+    wet: 0.4
+  });
+
+  var compress = new _tone2.default.Compressor({
+    threshold: -30,
+    ratio: 6,
+    attack: 0.3,
+    release: 0.1
+  }).toMaster();
+
+  var hihat = new _tone2.default.Sampler({
+    url: './audio/hihat.wav'
+  }).chain(distortion, compress);
+
+  exports.default = hihat;
 });
 
 /***/ })
