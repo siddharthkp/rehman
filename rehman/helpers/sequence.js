@@ -1,14 +1,18 @@
 import Tone from 'tone'
+import React from 'react'
 
-const sequence = (instrument, notes) => {
-  new Tone.Part((time, note) => {
-    instrument.triggerAttackRelease(
-      note.name,
-      note.duration,
-      time,
-      note.velocity
+class Sequence extends React.Component {
+  render() {
+    return (
+      <div>
+        {React.Children.map(this.props.children, (child, index) => {
+          if (!child.props.time) {
+            return React.cloneElement(child, { time: index * 0.5 })
+          } else return child
+        })}
+      </div>
     )
-  }, notes).start()
+  }
 }
 
-export default sequence
+export default Sequence

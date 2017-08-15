@@ -1,4 +1,6 @@
+import React from 'react'
 import Tone from 'tone'
+import renderer from './renderer'
 
 const distortion = new Tone.Distortion({
   distortion: 0.4,
@@ -16,4 +18,11 @@ const snare = new Tone.Sampler({
   url: './rehman/audio/snare.wav'
 }).chain(distortion, compress)
 
-export default snare
+class Snare extends React.Component {
+  render() {
+    renderer(this.props, snare)
+    return <span>snare</span>
+  }
+}
+
+export default Snare

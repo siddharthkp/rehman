@@ -1,6 +1,6 @@
-import kick from './kick'
-import snare from './snare'
-import hihat from './hihat'
-import base from './base'
+import Kick from './kick'
+import Snare from './snare'
+import Hihat from './hihat'
+import Bass from './bass'
 
-export { kick, snare, base, hihat }
+export { Kick, Snare, Bass, Hihat }

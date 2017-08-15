@@ -3,7 +3,7 @@ const { resolve } = require('path')
 
 const babelOptions = {
   ignore: /node_modules/,
-  presets: [['es2015', { modules: false }]],
+  presets: [['es2015', { modules: false }], 'react'],
   plugins: ['transform-es2015-modules-umd']
 }
 

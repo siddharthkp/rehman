@@ -12,17 +12,16 @@ const compress = new Tone.Compressor({
   ratio: 6,
   attack: 0.3,
   release: 0.1
-}).toMaster()
+})
 
-const hihat = new Tone.Sampler({
-  url: './rehman/audio/hihat.wav'
-}).chain(distortion, compress)
+const synth = new Tone.Synth().toMaster()
+synth.volume.value = 15
 
-class Kick extends React.Component {
+class Bass extends React.Component {
   render() {
-    renderer(this.props, snare)
-    return <span>hihat</span>
+    renderer(this.props, synth)
+    return <span>bass</span>
   }
 }
 
-export default Kick
+export default Bass

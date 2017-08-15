@@ -1,11 +1,15 @@
+import React from 'react'
 import Tone from 'tone'
 
 import sequence from './sequence'
 
-const Song = meta => {
-  Tone.Transport.bpm.value = meta.bpm
-  Tone.Transport.start()
-  setInterval(() => (Tone.Transport.position = 0), meta.repeat)
+class Song extends React.Component {
+  render() {
+    Tone.Transport.bpm.value = 120
+    Tone.Transport.start()
+    setInterval(() => (Tone.Transport.position = 0), 4000)
+    return <div>{this.props.children}</div>
+  }
 }
 
 const Sequence = sequence

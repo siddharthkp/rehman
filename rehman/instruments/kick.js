@@ -1,4 +1,6 @@
+import React from 'react'
 import Tone from 'tone'
+import renderer from './renderer'
 
 const distortion = new Tone.Distortion({
   distortion: 0.4,
@@ -16,4 +18,11 @@ const kick = new Tone.Sampler({
   url: './rehman/audio/kick.wav'
 }).chain(distortion, compress)
 
-export default kick
+class Kick extends React.Component {
+  render() {
+    renderer(this.props, kick)
+    return <span>kick</span>
+  }
+}
+
+export default Kick
