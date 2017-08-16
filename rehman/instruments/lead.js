@@ -14,17 +14,15 @@ const compress = new Tone.Compressor({
   release: 0.1
 })
 
-const snare = new Tone.Sampler({
-  url: './rehman/audio/snare.wav'
-})
-  .chain(distortion, compress)
-  .toMaster()
+const synth = new Tone.Synth().toMaster()
+synth.set('detune', -100)
+synth.set('volume', 15)
 
-class Snare extends React.Component {
+class Lead extends React.Component {
   render() {
-    renderer(this.props.children, snare)
-    return <span>snare</span>
+    renderer(this.props.children, synth)
+    return <span>lead</span>
   }
 }
 
-export default Snare
+export default Lead

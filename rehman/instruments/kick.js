@@ -12,15 +12,15 @@ const compress = new Tone.Compressor({
   ratio: 6,
   attack: 0.3,
   release: 0.1
-}).toMaster()
+})
 
-const kick = new Tone.Sampler({
-  url: './rehman/audio/kick.wav'
-}).chain(distortion, compress)
+const kick = new Tone.Sampler({ url: './rehman/audio/kick.wav' })
+  .chain(distortion, compress)
+  .toMaster()
 
 class Kick extends React.Component {
   render() {
-    renderer(this.props, kick)
+    renderer(this.props.children, kick)
     return <span>kick</span>
   }
 }

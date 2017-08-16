@@ -20,7 +20,7 @@ synth.set('volume', 15)
 
 class Bass extends React.Component {
   render() {
-    renderer(this.props, synth)
+    renderer(this.props.children, synth)
     return <span>bass</span>
   }
 }

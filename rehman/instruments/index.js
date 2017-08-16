@@ -4,7 +4,8 @@ import Kick from './kick'
 import Snare from './snare'
 import Hihat from './hihat'
 import Bass from './bass'
+import Lead from './lead'
 
-const X = () => null
+const Note = () => null
 
-export { Kick, Snare, Bass, Hihat, X }
+export { Kick, Snare, Bass, Lead, Hihat, Note }

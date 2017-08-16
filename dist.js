@@ -27160,11 +27160,52 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var renderer = function renderer(props, instrument) {
-    var note = Object.assign({}, { time: 0 }, props);
-    new _tone2.default.Part(function (time, note) {
-      instrument.triggerAttackRelease(note.chord, note.duration || 0.75, time || 0, note.velocity || 0.75);
-    }, [note]).start();
+  var _chords;
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  var chords = (_chords = {
+    E: 'E2'
+  }, _defineProperty(_chords, 'E', 'E2'), _defineProperty(_chords, 'G', 'G2'), _defineProperty(_chords, 'E', 'E2'), _defineProperty(_chords, 'D', 'D2'), _defineProperty(_chords, 'C', 'C2'), _defineProperty(_chords, 'B', 'B1'), _defineProperty(_chords, 'F', 'F2'), _defineProperty(_chords, 'x', 0), _chords);
+
+  var renderer = function renderer(keys, instrument) {
+    var notes = [];
+    if (typeof keys === 'string') {
+      notes = keys.split(' ').map(function (key, index) {
+        return { chord: key, time: index * 0.5 };
+      });
+    } else {
+      notes = keys.map(function (key) {
+        return {
+          time: key.props.time,
+          chord: key.props.children,
+          duration: key.props.duration
+        };
+      });
+    }
+
+    notes.map(function (note, index) {
+      if (note.chord !== 'o') {
+        new _tone2.default.Part(function (time, tone) {
+          instrument.triggerAttackRelease(chords[note.chord], note.duration || 0.75, // duration
+          time, 0.75 //velocity
+          );
+        }, [note]).start();
+      }
+    });
   };
 
   exports.default = renderer;
@@ -32277,35 +32318,53 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       _song.Song,
       null,
       _react2.default.createElement(
-        _song.Sequence,
-        { name: 'kick' },
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null),
-        _react2.default.createElement(_instruments.Kick, null)
+        _instruments.Kick,
+        null,
+        'x x x x x x x x'
       ),
       _react2.default.createElement(
-        _song.Sequence,
-        { name: 'snare' },
-        _react2.default.createElement(_instruments.Snare, { time: '0' }),
-        _react2.default.createElement(_instruments.Snare, { time: '1' }),
-        _react2.default.createElement(_instruments.Snare, { time: '2' }),
-        _react2.default.createElement(_instruments.Snare, { time: '3' })
+        _instruments.Snare,
+        null,
+        'x o x o x o x o'
       ),
       _react2.default.createElement(
-        _song.Sequence,
-        { name: 'bass' },
-        _react2.default.createElement(_instruments.Bass, { time: '0', chord: 'E2' }),
-        _react2.default.createElement(_instruments.Bass, { time: '0.75', duration: '0.125', chord: 'E2' }),
-        _react2.default.createElement(_instruments.Bass, { time: '1', duration: '0.125', chord: 'G2' }),
-        _react2.default.createElement(_instruments.Bass, { time: '1.375', duration: '0.125', chord: 'E2' }),
-        _react2.default.createElement(_instruments.Bass, { time: '1.75', duration: '0.25', chord: 'D2' }),
-        _react2.default.createElement(_instruments.Bass, { time: '2', duration: '1', chord: 'C2' }),
-        _react2.default.createElement(_instruments.Bass, { time: '3', duration: '1', chord: 'B1' })
+        _instruments.Lead,
+        null,
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '0', duration: '0.75' },
+          'E'
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '0.75', duration: '0.125' },
+          'E'
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '1', duration: '0.125' },
+          'G'
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '1.375', duration: '0.125' },
+          'E'
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '1.75', duration: '0.25' },
+          'D'
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '2', duration: '1' },
+          'C'
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '3', duration: '1' },
+          'B'
+        )
       )
     );
   };
@@ -45180,26 +45239,26 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(13), __webpack_require__(189), __webpack_require__(190), __webpack_require__(191), __webpack_require__(192)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(13), __webpack_require__(189), __webpack_require__(190), __webpack_require__(191), __webpack_require__(192), __webpack_require__(193)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('./kick'), require('./snare'), require('./hihat'), require('./bass'));
+    factory(exports, require('react'), require('./kick'), require('./snare'), require('./hihat'), require('./bass'), require('./lead'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.kick, global.snare, global.hihat, global.bass);
+    factory(mod.exports, global.react, global.kick, global.snare, global.hihat, global.bass, global.lead);
     global.index = mod.exports;
   }
-})(this, function (exports, _react, _kick, _snare, _hihat, _bass) {
+})(this, function (exports, _react, _kick, _snare, _hihat, _bass, _lead) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.X = exports.Hihat = exports.Bass = exports.Snare = exports.Kick = undefined;
+  exports.Note = exports.Hihat = exports.Lead = exports.Bass = exports.Snare = exports.Kick = undefined;
 
   var _react2 = _interopRequireDefault(_react);
 
@@ -45211,21 +45270,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   var _bass2 = _interopRequireDefault(_bass);
 
+  var _lead2 = _interopRequireDefault(_lead);
+
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       default: obj
     };
   }
 
-  var X = function X() {
+  var Note = function Note() {
     return null;
   };
 
   exports.Kick = _kick2.default;
   exports.Snare = _snare2.default;
   exports.Bass = _bass2.default;
+  exports.Lead = _lead2.default;
   exports.Hihat = _hihat2.default;
-  exports.X = X;
+  exports.Note = Note;
 });
 
 /***/ }),
@@ -45324,11 +45386,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     ratio: 6,
     attack: 0.3,
     release: 0.1
-  }).toMaster();
+  });
 
-  var kick = new _tone2.default.Sampler({
-    url: './rehman/audio/kick.wav'
-  }).chain(distortion, compress);
+  var kick = new _tone2.default.Sampler({ url: './rehman/audio/kick.wav' }).chain(distortion, compress).toMaster();
 
   var Kick = function (_React$Component) {
     _inherits(Kick, _React$Component);
@@ -45342,7 +45402,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     _createClass(Kick, [{
       key: 'render',
       value: function render() {
-        (0, _renderer2.default)(this.props, kick);
+        (0, _renderer2.default)(this.props.children, kick);
         return _react2.default.createElement(
           'span',
           null,
@@ -45453,11 +45513,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     ratio: 6,
     attack: 0.3,
     release: 0.1
-  }).toMaster();
+  });
 
   var snare = new _tone2.default.Sampler({
     url: './rehman/audio/snare.wav'
-  }).chain(distortion, compress);
+  }).chain(distortion, compress).toMaster();
 
   var Snare = function (_React$Component) {
     _inherits(Snare, _React$Component);
@@ -45471,7 +45531,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     _createClass(Snare, [{
       key: 'render',
       value: function render() {
-        (0, _renderer2.default)(this.props, snare);
+        (0, _renderer2.default)(this.props.children, snare);
         return _react2.default.createElement(
           'span',
           null,
@@ -45729,7 +45789,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     _createClass(Bass, [{
       key: 'render',
       value: function render() {
-        (0, _renderer2.default)(this.props, synth);
+        (0, _renderer2.default)(this.props.children, synth);
         return _react2.default.createElement(
           'span',
           null,
@@ -45742,6 +45802,135 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   }(_react2.default.Component);
 
   exports.default = Bass;
+});
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(13), __webpack_require__(17), __webpack_require__(34)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('tone'), require('./renderer'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.tone, global.renderer);
+    global.lead = mod.exports;
+  }
+})(this, function (exports, _react, _tone, _renderer) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _tone2 = _interopRequireDefault(_tone);
+
+  var _renderer2 = _interopRequireDefault(_renderer);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  }
+
+  var distortion = new _tone2.default.Distortion({
+    distortion: 0.4,
+    wet: 0.4
+  });
+
+  var compress = new _tone2.default.Compressor({
+    threshold: -30,
+    ratio: 6,
+    attack: 0.3,
+    release: 0.1
+  });
+
+  var synth = new _tone2.default.Synth().toMaster();
+  synth.set('detune', -100);
+  synth.set('volume', 15);
+
+  var Lead = function (_React$Component) {
+    _inherits(Lead, _React$Component);
+
+    function Lead() {
+      _classCallCheck(this, Lead);
+
+      return _possibleConstructorReturn(this, (Lead.__proto__ || Object.getPrototypeOf(Lead)).apply(this, arguments));
+    }
+
+    _createClass(Lead, [{
+      key: 'render',
+      value: function render() {
+        (0, _renderer2.default)(this.props.children, synth);
+        return _react2.default.createElement(
+          'span',
+          null,
+          'lead'
+        );
+      }
+    }]);
+
+    return Lead;
+  }(_react2.default.Component);
+
+  exports.default = Lead;
 });
 
 /***/ })
