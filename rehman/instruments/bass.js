@@ -15,7 +15,8 @@ const compress = new Tone.Compressor({
 })
 
 const synth = new Tone.Synth().toMaster()
-synth.volume.value = 15
+synth.set('detune', -100)
+synth.set('volume', 15)
 
 class Bass extends React.Component {
   render() {

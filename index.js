@@ -4,18 +4,18 @@ import ReactDOM from 'react-dom'
 import { Song, Sequence } from './rehman/helpers/song'
 import { Kick, Snare, Hihat, Bass } from './rehman/instruments'
 
-const Null = () => null
-
 const SevenNationArmy = () =>
   <Song>
-    <Sequence>
+    <Sequence name="kick">
       <Kick /><Kick /><Kick /><Kick /><Kick /><Kick /><Kick /><Kick />
     </Sequence>
-    <Sequence>
-      <Snare /><Null /><Snare /><Null /><Snare /><Null /><Snare /><Null />
+    <Sequence name="snare">
+      <Snare time="0" />
+      <Snare time="1" />
+      <Snare time="2" />
+      <Snare time="3" />
     </Sequence>
-
-    <Sequence>
+    <Sequence name="bass">
       <Bass time="0" chord="E2" />
       <Bass time="0.75" duration="0.125" chord="E2" />
       <Bass time="1" duration="0.125" chord="G2" />
