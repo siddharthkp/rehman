@@ -9893,7 +9893,69 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   }
 
   var SevenNationArmy = function SevenNationArmy() {
-    return _react2.default.createElement(_song.Song, null);
+    return _react2.default.createElement(
+      _song.Song,
+      null,
+      _react2.default.createElement(
+        _instruments.Kick,
+        null,
+        ' x x x x x x x x '
+      ),
+      _react2.default.createElement(
+        _instruments.Snare,
+        null,
+        ' x o x o x o x o '
+      ),
+      _react2.default.createElement(
+        _instruments.Hihat,
+        null,
+        ' x x x x x x x x '
+      ),
+      _react2.default.createElement(
+        _instruments.Bass,
+        null,
+        ' E E E E B B B B '
+      ),
+      _react2.default.createElement(
+        _instruments.Lead,
+        null,
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '0', duration: '0.75' },
+          ' E2 '
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '0.75', duration: '0.25' },
+          ' E2 '
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '1', duration: '0.25' },
+          ' G2 '
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '1.375', duration: '0.25' },
+          ' E2 '
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '1.75', duration: '0.25' },
+          ' D2 '
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '2', duration: '1' },
+          ' C2 '
+        ),
+        _react2.default.createElement(
+          _instruments.Note,
+          { time: '3', duration: '1' },
+          ' B1 '
+        )
+      )
+    );
   };
 
   _reactDom2.default.render(_react2.default.createElement(SevenNationArmy, null), document.getElementById('root'));
@@ -23244,7 +23306,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             source.buffer = instrument;
 
             var gainNode = context.createGain();
-            gainNode.gain.value = 3;
+            gainNode.gain.value = 2;
 
             source.connect(gainNode).connect(context.destination);
             setTimeout(function () {
@@ -23387,6 +23449,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
       var _this = _possibleConstructorReturn(this, (Lead.__proto__ || Object.getPrototypeOf(Lead)).call(this, props));
 
+      console.log(props.children);
       _this.state = {
         notes: props.children.map(function (note) {
           return {

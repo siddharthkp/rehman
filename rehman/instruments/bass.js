@@ -15,7 +15,7 @@ class Bass extends React.Component {
         source.buffer = instrument
 
         const gainNode = context.createGain()
-        gainNode.gain.value = 3
+        gainNode.gain.value = 2
 
         source.connect(gainNode).connect(context.destination)
         setTimeout(() => {

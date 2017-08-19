@@ -1,5 +1,14 @@
 <style>body {background: #000;}</style>
-<!-- <script src="./buffer-loader.js"></script> -->
+<script src="./buffer-loader.js"></script>
 <script>
+const context = new (window.AudioContext || window.webkitAudioContext)()
 
+const source = context.createBufferSource()
+const url = './audio/snare.wav'
+new BufferLoader(context, url, audioBuffer => {
+  source.buffer = audioBuffer
+
+  source.connect(context.destination)
+  source.start()
+}).load()
 </script>

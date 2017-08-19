@@ -6,6 +6,7 @@ import loadInstrument from './instrument'
 class Lead extends React.Component {
   constructor(props) {
     super(props)
+    console.log(props.children)
     this.state = {
       notes: props.children.map(note => ({
         chord: note.props.children.trim(),
