@@ -1,27 +1,40 @@
 import React from 'react'
-import Tone from 'tone'
 import renderer from './renderer'
-
-const distortion = new Tone.Distortion({
-  distortion: 0.4,
-  wet: 0.4
-})
-
-const compress = new Tone.Compressor({
-  threshold: -30,
-  ratio: 6,
-  attack: 0.3,
-  release: 0.1
-})
-
-const synth = new Tone.Synth().toMaster()
-synth.set('detune', -100)
-synth.set('volume', 15)
+import getFrequency from './frequency'
+import loadInstrument from './instrument'
 
 class Bass extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { notes: props.children.trim().split(' ') }
+  }
+  play() {
+    this.state.notes.map((note, index) => {
+      loadInstrument(note).then(instrument => {
+        const source = window.context.createBufferSource()
+        source.buffer = instrument
+
+        const gainNode = context.createGain()
+        gainNode.gain.value = 2
+
+        source.connect(gainNode).connect(context.destination)
+        setTimeout(() => {
+          source.start()
+          setTimeout(() => source.stop(), 0.75 * 1000)
+        }, index * 0.5 * 1000)
+      })
+    })
+  }
   render() {
-    renderer(this.props.children, synth)
-    return <span>bass</span>
+    this.play()
+    setInterval(() => this.play(), 4000)
+
+    return (
+      <div className="instrument">
+        <span className="name">bass</span>
+        {this.state.notes.map((note, index) => <span key={index} className="note">{note}</span>)}
+      </div>
+    )
   }
 }
 

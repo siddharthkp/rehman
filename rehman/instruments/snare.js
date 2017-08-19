@@ -1,29 +1,26 @@
 import React from 'react'
-import Tone from 'tone'
 import renderer from './renderer'
-
-const distortion = new Tone.Distortion({
-  distortion: 0.4,
-  wet: 0.4
-})
-
-const compress = new Tone.Compressor({
-  threshold: -30,
-  ratio: 6,
-  attack: 0.3,
-  release: 0.1
-})
-
-const snare = new Tone.Sampler({
-  url: './rehman/audio/snare.wav'
-})
-  .chain(distortion, compress)
-  .toMaster()
+import loadInstrument from './instrument'
 
 class Snare extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  componentDidMount() {
+    loadInstrument('snare').then(instrument => this.setState({ instrument }))
+  }
   render() {
-    renderer(this.props.children, snare)
-    return <span>snare</span>
+    if (this.state.instrument) renderer(this.props.children, this.state.instrument)
+    return (
+      <div className="instrument">
+        <span className="name">snare</span>
+        {this.props.children
+          .trim()
+          .split(' ')
+          .map((note, index) => <span key={index} className="note">{note}</span>)}
+      </div>
+    )
   }
 }
 

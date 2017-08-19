@@ -1,28 +1,27 @@
 import React from 'react'
-import Tone from 'tone'
 import renderer from './renderer'
+import loadInstrument from './instrument'
 
-const distortion = new Tone.Distortion({
-  distortion: 0.4,
-  wet: 0.4
-})
-
-const compress = new Tone.Compressor({
-  threshold: -30,
-  ratio: 6,
-  attack: 0.3,
-  release: 0.1
-}).toMaster()
-
-const hihat = new Tone.Sampler({
-  url: './rehman/audio/hihat.wav'
-}).chain(distortion, compress)
-
-class Kick extends React.Component {
+class Hihat extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  componentDidMount() {
+    loadInstrument('hihat').then(instrument => this.setState({ instrument }))
+  }
   render() {
-    renderer(this.props, snare)
-    return <span>hihat</span>
+    if (this.state.instrument) renderer(this.props.children, this.state.instrument)
+    return (
+      <div className="instrument">
+        <span className="name">hihat</span>
+        {this.props.children
+          .trim()
+          .split(' ')
+          .map((note, index) => <span key={index} className="note">{note}</span>)}
+      </div>
+    )
   }
 }
 
-export default Kick
+export default Hihat
