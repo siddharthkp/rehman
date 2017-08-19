@@ -1,2 +1,19 @@
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+<style>
+  body {background: #000; color: #FFF; font-family: 'Rubik', sans-serif; font-size: 32px; padding-left: 100px;}
+  .instrument {height: 100px; line-height: 100px;}
+  .name {width: 150px; display: inline-block;}
+  .note {min-width: 30px; display: inline-block; padding-left: 75px;}
+  .instrument:first-child {color: #FFF}
+  .instrument:nth-child(2) {color: #55B5DB}
+  .instrument:nth-child(3) {color: #FFAB40}
+  .instrument:nth-child(4) {color: #8EDFBA}
+  .instrument:nth-child(5) {color: #8E7CC3}
+  .instrument:nth-child(6) {color: #DDAAD4}
+  .dot {color: #888}
+  .active.dot {color: #2AE416}
+</style>
 <div id="root"></div>
+<script src="./rehman/helpers/buffer-loader.js"></script>
+<script>window.context = new window.AudioContext()</script>
 <script src="./dist.js"></script>
